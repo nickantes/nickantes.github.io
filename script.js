@@ -55,16 +55,31 @@
 
   // Smooth-scroll fragment links without letting Angular's hash router intercept them.
   // Angular controls #/ and #/projects/... — plain anchors like #about are handled here.
+  const SECTION_IDS = ['#about', '#skills', '#projects', '#contact'];
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;
     const hash = link.getAttribute('href');
     if (!hash || hash === '#' || hash.startsWith('#/')) return;
-    const target = document.querySelector(hash);
-    if (!target) return;
-    e.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    history.pushState(null, '', hash);
+    let target = document.querySelector(hash);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.pushState(null, '', hash);
+      return;
+    }
+    // On a project page the section isn't in the DOM yet; go to home then scroll.
+    if (SECTION_IDS.indexOf(hash) !== -1) {
+      e.preventDefault();
+      window.location.hash = '#/';
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', hash);
+        }
+      }, 120);
+    }
   });
 
 })();

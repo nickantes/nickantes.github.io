@@ -101,6 +101,7 @@ body{
   border-bottom: 1px solid rgba(255,255,255,.06);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  background: var(--bg2);
   background: color-mix(in srgb, var(--bg2) 75%, transparent);
 }
 .topbar__inner{
@@ -169,6 +170,7 @@ body{
 }
 
 .topbar__actions{ display:flex; align-items:center; gap:10px; }
+.nav-toggle{ display:none; }
 .iconbtn{
   width:42px;height:42px;
   border-radius:14px;
@@ -668,7 +670,18 @@ body{
 
 /* Responsiveness */
 @media (max-width: 980px){
-  .nav{ display:none; }
+  .nav-toggle{ display:grid; }
+  .topbar__inner{ flex-wrap:wrap; }
+  .nav{
+    display:none;
+    order:3;
+    flex-basis:100%;
+    flex-direction:column;
+    gap:4px;
+    padding:4px 0 12px;
+  }
+  .nav.is-open{ display:flex; }
+  .nav__link{ padding:12px 14px; }
   .card--hero{ grid-column: 1 / span 12; grid-row:auto; }
   .card--about{ grid-column: 1 / span 12; }
   .card--skills{ grid-column: 1 / span 12; }
@@ -695,6 +708,6 @@ body{
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
-  .card, .topbar{ background: color-mix(in srgb, var(--bg2) 92%, transparent); }
+  .card, .topbar{ background: var(--bg2); }
 }
 

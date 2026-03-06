@@ -1,0 +1,80 @@
+<section class="hero" aria-label="Introduction">
+  <div class="bento">
+    <article class="card card--hero">
+      <div class="card__bg" aria-hidden="true"></div>
+      <p class="eyebrow">Developer portfolio</p>
+      <h1 class="hero__title">
+        Nick
+        <span class="hero__titleLine">Antes</span>
+      </h1>
+      <p class="hero__tagline">Developer, Systems Architect &amp; Digital Strategist.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#projects">View projects</a>
+        <a class="btn btn--ghost" href="#contact">Let's talk</a>
+      </div>
+    </article>
+
+    <article id="about" class="card card--about">
+      <h2 class="card__title">About</h2>
+      <p class="card__text">
+        I'm Nick Antes, a developer and digital strategist who builds digital experiences that actually drive business.
+        My expertise bridges the gap between high-converting frontend web design and complex backend automation.
+        Whether I'm building modern, SEO-optimized platforms for local businesses or engineering semi-automated sales tracking systems,
+        my goal is always the same: build fast, efficient, and scalable tools that solve real-world problems.
+      </p>
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric__kicker">Focus</div>
+          <div class="metric__value">Speed + outcomes</div>
+        </div>
+        <div class="metric">
+          <div class="metric__kicker">Style</div>
+          <div class="metric__value">Modern, SEO-first</div>
+        </div>
+      </div>
+    </article>
+
+    <article id="skills" class="card card--skills">
+      <div class="card__head">
+        <h2 class="card__title">Skills</h2>
+        <p class="card__hint">Core capabilities I use to ship work end-to-end.</p>
+      </div>
+      <ul class="chips" aria-label="Core skills">
+        <li class="chip" ng-repeat="skill in skills">{{ skill }}</li>
+      </ul>
+    </article>
+
+    <section id="projects" class="card card--projects" aria-label="Projects">
+      <div class="card__head">
+        <h2 class="card__title">Projects</h2>
+        <p class="card__hint">Recent builds with measurable impact.</p>
+      </div>
+
+      <div class="projects" ng-class="{'projects--three': projects.length >= 3}">
+        <article class="proj" ng-class="{'proj--featured': !project.isPrivate && project.externalUrl}" ng-repeat="project in projects">
+          <a class="proj__link" ng-href="#/projects/{{ project.slug }}" ng-attr-aria-label="{{ project.title }}{{ project.isPrivate ? ' (private)' : '' }}">
+            <div class="proj__top">
+              <h3 class="proj__title">{{ project.title }}</h3>
+              <span class="proj__pill" aria-label="Private" ng-if="project.isPrivate">Private</span>
+            </div>
+            <p class="proj__desc">{{ project.description }}</p>
+            <ul class="tags" aria-label="Tags">
+              <li class="tag" ng-repeat="tag in project.tags">{{ tag }}</li>
+            </ul>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="card card--contact">
+      <h2 class="card__title">Contact</h2>
+      <p class="card__text">
+        Want to collaborate or hire me? The fastest way is email. I'm happy to discuss builds, audits, or systems architecture.
+      </p>
+      <div class="contactRow">
+        <a class="btn btn--primary" href="mailto:nick.c.antes@gmail.com">Email Nick</a>
+        <a class="btn btn--ghost" href="https://www.linkedin.com/in/nick-antes/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+      </div>
+    </section>
+  </div>
+</section>
